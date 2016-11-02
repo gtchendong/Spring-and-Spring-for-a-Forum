@@ -32,9 +32,10 @@
 		  	</div>
 	  	</div>
 	  	<div>
-	  		<form action="reput.do">
+	  		<form action="reput.do" method="post" enctype="multipart/form-data">
 	  			帖子名称<input style="display: block;" type="text" name="title"/>
 	  			帖子内容<textarea style="display: block;" rows="5" cols="50" name="context"></textarea>
+	  			图片<input type="file" value="选择" name="pic"/>
 	  			<input style="display: block;" type="submit" value="提交"/>
 	  		</form>
 	  	</div>

@@ -22,7 +22,6 @@ public class ContextController {
 	public String context(@PathVariable("id") String id,HttpSession session,HttpServletRequest request){
 		List<?> list=reply.myservice(id);
 		request.setAttribute("reply",list);
-		System.out.println(list);
 		return "context";
 	}
 }

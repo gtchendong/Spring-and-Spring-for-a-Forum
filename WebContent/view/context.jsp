@@ -47,6 +47,10 @@
 				out.write("<div id=\"context\">");
 				out.write(re.getContext());
 				out.write("</div>");
+				if(re.getImage()!=null){
+					out.write("<img style=\"width:300px;height:100px;\" src=\""+re.getImage()+"\">");
+					out.write("</img>");
+				}
 				out.write("<div class=\"date\">");
 				out.write(re.getUsername());
 				out.write("</div>");
