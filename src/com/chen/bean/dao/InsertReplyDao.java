@@ -9,9 +9,9 @@ public class InsertReplyDao {
 	@Autowired
 	private JdbcTemplate jt;
 	
-	public void insert(String title,String context,String username){
-		String sql ="INSERT INTO reply (title,context,username)VALUES (?,?,?)";
-		Object[] o={title,context,username};
+	public void insert(String title,String context,String username,String image){
+		String sql ="INSERT INTO reply (title,context,username,image)VALUES (?,?,?,?)";
+		Object[] o={title,context,username,image};
 		jt.update(sql, o);
 	}
 	

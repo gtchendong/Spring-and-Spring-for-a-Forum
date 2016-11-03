@@ -10,7 +10,7 @@ public class InsertService {
 	@Autowired
 	private InsertReplyDao reply;
 	
-	public void insert(String title,String context,String username){
-		reply.insert(title, context, username);
+	public void insert(String title,String context,String username,String image){
+		reply.insert(title, context, username,image);
 	}
 }

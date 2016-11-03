@@ -1,8 +1,8 @@
 package com.chen.action;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,7 +30,7 @@ public class RegisterController {
 		return "register";
 	}
 	@RequestMapping(value="/reput.do",method=RequestMethod.POST)
-	public String create(HttpSession session,HttpServletRequest request) throws IOException{
+	public String create(HttpSession session,HttpServletRequest request){
 		String title=null;
 		String context=null;
 		String image=null;
@@ -44,26 +44,31 @@ public class RegisterController {
 				FileItem item = list.get(i);
 				if (item.isFormField()) {//判断文件向是否为表单字段
 					if ("title".equals(item.getFieldName())) {
-						System.out.println("description:"+new String(item.getString().getBytes("iso-8859-1"),"utf-8"));//解决乱码
-						title =item.getString();
+						//System.out.println("description:"+new String(item.getString().getBytes("iso-8859-1"),"utf-8"));//解决乱码
+						try {
+							title =new String(item.getString().getBytes("iso-8859-1"),"utf-8");
+						} catch (UnsupportedEncodingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}else if("context".equals(item.getFieldName())){
 						context=item.getString();
 					}
 				}
 				else{
 					String filename=item.getName();
-					System.out.println("filename:"+filename);//获取文件名
+					//System.out.println("filename:"+filename);//获取文件名
 					if(filename!=""){
 					String extName=filename.substring(filename.lastIndexOf("."));//截取文件扩展名
-					System.out.println("extName:"+extName);
+					//System.out.println("extName:"+extName);
 					//生成UUID作为文件名
 					String newName=UUID.randomUUID().toString();
 					//获取服务器上的自定义的存放文件目录
 					String rootPath=request.getServletContext().getRealPath("/Pic");
-					System.out.println("request.getServletContext().getRealPath():"+request.getServletContext().getRealPath("/"));
-					System.out.println("request.getServletContext():"+request.getServletContext());
+					//System.out.println("request.getServletContext().getRealPath():"+request.getServletContext().getRealPath("/"));
+					//System.out.println("request.getServletContext():"+request.getServletContext());
 					image=rootPath+"\\"+newName+extName;
-					System.out.println(image);
+					//System.out.println(image);
 					try {
 						item.write(new File(rootPath+"\\"+newName+extName));
 					} catch (Exception e) {

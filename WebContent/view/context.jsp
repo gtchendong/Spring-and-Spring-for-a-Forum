@@ -48,7 +48,9 @@
 				out.write(re.getContext());
 				out.write("</div>");
 				if(re.getImage()!=null){
-					out.write("<img style=\"width:300px;height:100px;\" src=\""+re.getImage()+"\">");
+					//out.write("<img style=\"width:300px;height:100px;\" src=\""+re.getImage()+"\">");
+					//localhost下web工程（相当于webcontent）下的pic目录
+					out.write("<img style=\"width:300px;height:100px;\" src=\"/Web/Pic/"+re.getImage()+"\">");
 					out.write("</img>");
 				}
 				out.write("<div class=\"date\">");
@@ -65,12 +67,14 @@
 		</div>
 		<div>
 			<div style="width:70%;margin:0 auto;">
-				<form action="/Web/reply/replymessage.do" method="get">
+				<form action="/Web/reply/replymessage.do" method="post" enctype="multipart/form-data">
 					<label><%=pageContext.getAttribute("title")%></label>
 					<br>
 					<input type="hidden" name="title" value=<%=pageContext.getAttribute("title")%>>
 					<br>
 					<textarea rows="9" cols="100" name="context"></textarea>
+					<br>
+					添加图片<input type="file" value="选择" name="pic"/>
 					<br>
 					<input type="submit" value="提交"/>
 				</form>
