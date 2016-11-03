@@ -1,0 +1,3 @@
+Spring-and-Spring-for-a-Forum
+
+view层采用了jsp 用了SpringMvc的Controller来转发请求 并且使用了Spring的IOC来管理Beans，和利用AOP来管理事务 Dao层用了JdbcTamolate，一个jdbc的小工具
